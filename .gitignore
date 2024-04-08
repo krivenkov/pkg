@@ -1,0 +1,11 @@
+.idea/*
+
+vendor/
+Gopkg.lock
+.vscode/
+.DS_Store
+!*.*
+
+.editorconfig
+
+/.idea/*
