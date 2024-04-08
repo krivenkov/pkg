@@ -1,0 +1,89 @@
+run:
+  go: "1.19"
+  concurrency: 4
+  timeout: 2m
+  issues-exit-code: 1
+  tests: false
+  modules-download-mode: readonly
+  allow-parallel-runners: false
+
+linters:
+  disable:
+    - structcheck
+
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+  uniq-by-line: true
+  path-prefix: ""
+
+linters-settings:
+  dupl:
+    threshold: 1000
+
+  exhaustive:
+    default-signifies-exhaustive: false
+
+  funlen:
+    lines: 600
+    statements: 100
+
+  goconst:
+    min-len: 5
+    min-occurrences: 5
+
+  gocyclo:
+    min-complexity: 100
+
+  goimports:
+    local-prefixes: content-api
+
+  golint:
+    min-confidence: 0.8
+
+  govet:
+    check-shadowing: true
+
+  dogsled:
+    max-blank-identifiers: 2
+
+  errcheck:
+    check-type-assertions: false
+    check-blank: false
+
+  gocognit:
+    min-complexity: 100
+
+  nestif:
+    min-complexity: 20
+
+  gofmt:
+    simplify: true
+
+  lll:
+    line-length: 200
+    tab-width: 1
+
+  maligned:
+    suggest-new: true
+
+  nakedret:
+    max-func-lines: 30
+
+  nolintlint:
+    allow-unused: false
+    allow-leading-space: true
+    allow-no-explanation: [ ]
+    require-explanation: true
+    require-specific: true
+
+  unparam:
+    check-exported: false
+
+  unused:
+    check-exported: false
+
+  whitespace:
+    multi-if: false
+    multi-func: false

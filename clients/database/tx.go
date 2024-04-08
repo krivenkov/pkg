@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/jackc/pgx/v4"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/krivenkov/pkg/mlog"
 	"go.uber.org/zap"
-	pgx "pkg/mod/github.com/jackc/pgx/v4"
 )
 
 func AcquireTX(ctx context.Context, pool *pgxpool.Pool, f func(tx pgx.Tx) error) error {

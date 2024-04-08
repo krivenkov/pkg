@@ -4,12 +4,12 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/jackc/pgx/v4"
 	"github.com/jackc/pgx/v4/log/zapadapter"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/krivenkov/pkg/global"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
-	pgx "pkg/mod/github.com/jackc/pgx/v4"
 )
 
 func NewPgxPool(cfg Config, info global.Info, logger *zap.Logger, lc fx.Lifecycle) (*pgxpool.Pool, error) {

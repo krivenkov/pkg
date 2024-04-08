@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"runtime/debug"
 
+	"github.com/jackc/pgx/v4"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/krivenkov/pkg/txer"
-	pgx "pkg/mod/github.com/jackc/pgx/v4"
 )
 
 var ErrTxAlready = errors.New("tx is already running in the context")
