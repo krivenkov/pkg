@@ -1,4 +1,4 @@
-module github.com/pkg
+module github.com/krivenkov/pkg
 
 go 1.22.1
 

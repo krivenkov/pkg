@@ -3,7 +3,7 @@ package mlog
 import (
 	"context"
 
-	"github.com/pkg/global"
+	"github.com/krivenkov/pkg/global"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )

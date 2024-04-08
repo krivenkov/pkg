@@ -4,10 +4,10 @@ import (
 	"context"
 	"encoding/json"
 
+	"github.com/krivenkov/pkg/option"
+	"github.com/krivenkov/pkg/order"
+	"github.com/krivenkov/pkg/paginator"
 	"github.com/olivere/elastic/v7"
-	"github.com/pkg/option"
-	"github.com/pkg/order"
-	"github.com/pkg/paginator"
 )
 
 type Client interface {

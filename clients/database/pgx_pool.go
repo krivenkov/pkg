@@ -6,7 +6,7 @@ import (
 
 	"github.com/jackc/pgx/v4/log/zapadapter"
 	"github.com/jackc/pgx/v4/pgxpool"
-	"github.com/pkg/global"
+	"github.com/krivenkov/pkg/global"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 	pgx "pkg/mod/github.com/jackc/pgx/v4"

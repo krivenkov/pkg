@@ -7,7 +7,7 @@ import (
 	"runtime/debug"
 
 	"github.com/jackc/pgx/v4/pgxpool"
-	"github.com/pkg/txer"
+	"github.com/krivenkov/pkg/txer"
 	pgx "pkg/mod/github.com/jackc/pgx/v4"
 )
 

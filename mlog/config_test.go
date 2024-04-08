@@ -3,7 +3,7 @@ package mlog
 import (
 	"testing"
 
-	"github.com/pkg/mcfg"
+	"github.com/krivenkov/pkg/mcfg"
 	"github.com/stretchr/testify/require"
 )
 

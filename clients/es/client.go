@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/krivenkov/pkg/mlog"
 	"github.com/olivere/elastic/v7"
-	"github.com/pkg/mlog"
 	"go.uber.org/zap"
 )
 

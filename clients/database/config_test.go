@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pkg/mcfg"
+	"github.com/krivenkov/pkg/mcfg"
 	"github.com/stretchr/testify/require"
 )
 
