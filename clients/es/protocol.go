@@ -14,6 +14,7 @@ type Client interface {
 	Save(ctx context.Context, req *SaveRequest) error
 	DeleteByID(ctx context.Context, index string, id string) error
 	GetSearch(ctx context.Context, req *GetSearchRequest) (*GetSearchResponse, error)
+	GetCount(ctx context.Context, req *GetCountRequest) (int, error)
 
 	OpenPIT(ctx context.Context, indexes []string, keepAlive string) (*PIT, error)
 	ClosePIT(ctx context.Context, pit *PIT) error
@@ -51,6 +52,12 @@ type GetSearchRequest struct {
 	Pit           option.Option[PIT]
 	Orders        option.Option[[]*order.Order]
 	Pagination    option.Option[paginator.Pagination]
+}
+
+type GetCountRequest struct {
+	Index    string
+	Query    SearchQuery
+	MinScore option.Option[float64]
 }
 
 type GetSearchResponse struct {

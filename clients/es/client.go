@@ -148,6 +148,28 @@ func (c *client) GetSearch(ctx context.Context, req *GetSearchRequest) (*GetSear
 	}, nil
 }
 
+func (c *client) GetCount(ctx context.Context, req *GetCountRequest) (int, error) {
+	if req == nil {
+		return 0, fmt.Errorf("empty request in elastic search")
+	}
+
+	q := c.Client.Count()
+
+	q.Index(req.Index)
+	q.Query(req.Query)
+
+	if req.MinScore.IsSet() {
+		q.MinScore(req.MinScore.Value())
+	}
+
+	result, err := q.Do(ctx)
+	if err != nil {
+		return 0, err
+	}
+
+	return int(result), nil
+}
+
 func (c *client) OpenPIT(ctx context.Context, indexes []string, keepAlive string) (*PIT, error) {
 	logger := mlog.FromContext(ctx).With(
 		zap.String("indexes", strings.Join(indexes, ",")),
