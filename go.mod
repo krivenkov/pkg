@@ -3,7 +3,9 @@ module github.com/krivenkov/pkg
 go 1.22.1
 
 require (
+	github.com/Nerzal/gocloak/v6 v6.4.0
 	github.com/caarlos0/env/v6 v6.10.1
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/jackc/pgx/v4 v4.18.3
 	github.com/mcuadros/go-defaults v1.2.0
 	github.com/olivere/elastic/v7 v7.0.32
@@ -15,6 +17,7 @@ require (
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/go-resty/resty/v2 v2.3.0 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgconn v1.14.3 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
@@ -27,9 +30,11 @@ require (
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
+	github.com/segmentio/ksuid v1.0.2 // indirect
 	go.uber.org/dig v1.17.1 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
 	golang.org/x/crypto v0.20.0 // indirect
+	golang.org/x/net v0.21.0 // indirect
 	golang.org/x/sys v0.17.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 )
