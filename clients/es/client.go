@@ -56,6 +56,28 @@ func (c *client) Save(ctx context.Context, req *SaveRequest) error {
 	return nil
 }
 
+func (c *client) UpdateByScript(ctx context.Context, req *UpdateByScriptRequest) error {
+	logger := mlog.FromContext(ctx).With(
+		zap.String("index", req.Index),
+	)
+
+	if _, err := c.UpdateByQuery().
+		Index(req.Index).
+		Query(req.Query).
+		Script(req.Script).
+		Refresh(string(req.Refresh)).
+		Do(ctx); err != nil {
+		logger.Error("es fail update docs",
+			zap.Error(err),
+		)
+		return err
+	}
+
+	logger.Debug("es update")
+
+	return nil
+}
+
 func (c *client) DeleteByID(ctx context.Context, index string, id string) error {
 	logger := mlog.FromContext(ctx).With(
 		zap.String("index", index),

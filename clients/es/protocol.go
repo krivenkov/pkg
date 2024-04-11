@@ -12,6 +12,7 @@ import (
 
 type Client interface {
 	Save(ctx context.Context, req *SaveRequest) error
+	UpdateByScript(ctx context.Context, req *UpdateByScriptRequest) error
 	DeleteByID(ctx context.Context, index string, id string) error
 	GetSearch(ctx context.Context, req *GetSearchRequest) (*GetSearchResponse, error)
 	GetCount(ctx context.Context, req *GetCountRequest) (int, error)
@@ -40,6 +41,14 @@ type SaveRequest struct {
 	ID      string
 	Refresh RefreshType
 	Obj     interface{}
+}
+
+type UpdateByScriptRequest struct {
+	Index   string
+	ID      string
+	Refresh RefreshType
+	Query   SearchQuery
+	Script  *elastic.Script
 }
 
 type GetSearchRequest struct {
