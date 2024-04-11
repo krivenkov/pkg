@@ -19,15 +19,14 @@ const TokenMinuteCorrectionFactor = 20
 type AuthorizeFunc func(token string, realm string) error
 
 type Client struct {
-	Cfg         *Config
-	PathRoleMap map[string][]string
-	adminToken  *gocloak.JWT
-	PublicKey   *rsa.PublicKey
+	cfg        Config
+	adminToken *gocloak.JWT
+	PublicKey  *rsa.PublicKey
 	gocloak.GoCloak
 	mx sync.RWMutex
 }
 
-func NewClient(ctx context.Context, cfg *Config) (*Client, error) {
+func NewClient(ctx context.Context, cfg Config) (*Client, error) {
 	cli := gocloak.NewClient(cfg.Keycloak.BaseURL)
 
 	var pk *rsa.PublicKey
@@ -56,7 +55,7 @@ func NewClient(ctx context.Context, cfg *Config) (*Client, error) {
 
 	return &Client{
 		GoCloak:   cli,
-		Cfg:       cfg,
+		cfg:       cfg,
 		PublicKey: pk,
 	}, nil
 }
@@ -84,8 +83,8 @@ func (c *Client) RefreshTokenOrRelogin(ctx context.Context, refreshToken, client
 		return newAdminToken, nil
 	}
 
-	username := c.Cfg.Keycloak.Admin.Username
-	password := c.Cfg.Keycloak.Admin.Password
+	username := c.cfg.Keycloak.Admin.Username
+	password := c.cfg.Keycloak.Admin.Password
 	newAdminToken, err = c.LoginAdmin(ctx, username, password, realm)
 	if err != nil {
 		return nil, err
@@ -95,13 +94,13 @@ func (c *Client) RefreshTokenOrRelogin(ctx context.Context, refreshToken, client
 }
 
 func (c *Client) GetOrExtractAccessToken(ctx context.Context) (string, error) {
-	if c.Cfg.Keycloak.Admin.Username == "" {
+	if c.cfg.Keycloak.Admin.Username == "" {
 		return "", fmt.Errorf("no admin creds for auth cli")
 	}
 
-	username := c.Cfg.Keycloak.Admin.Username
-	password := c.Cfg.Keycloak.Admin.Password
-	realm := c.Cfg.Keycloak.Realm
+	username := c.cfg.Keycloak.Admin.Username
+	password := c.cfg.Keycloak.Admin.Password
+	realm := c.cfg.Keycloak.Realm
 
 	adminToken, exist := c.getAdminToken()
 	if !exist {
@@ -181,7 +180,7 @@ func (c *Client) ExtractUserByUsername(ctx context.Context, username string) (*U
 		return nil, err
 	}
 
-	realm := c.Cfg.Keycloak.Realm
+	realm := c.cfg.Keycloak.Realm
 	users, err := c.GoCloak.GetUsers(ctx, token, realm, params)
 	if err != nil {
 		return nil, err
@@ -196,5 +195,6 @@ func (c *Client) ExtractUserByUsername(ctx context.Context, username string) (*U
 			return NewUserFromKeycloakModel(val), nil
 		}
 	}
+
 	return nil, ErrNoUserFound
 }
