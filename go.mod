@@ -6,6 +6,7 @@ require (
 	github.com/Nerzal/gocloak/v6 v6.4.0
 	github.com/caarlos0/env/v6 v6.10.1
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/golang/mock v1.6.0
 	github.com/jackc/pgx/v4 v4.18.3
 	github.com/mcuadros/go-defaults v1.2.0
 	github.com/oklog/run v1.1.0
